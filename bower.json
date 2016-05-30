@@ -1,0 +1,20 @@
+{
+  "name": "myapp",
+  "homepage": "https://github.com/GustavoGottardi/myapp",
+  "authors": [
+    "Gustavo Gottardi"
+  ],
+  "description": "My webapp scaffold front-end, support NodeJS + Express + AngularJS",
+  "main": "index.html",
+  "keywords": [
+    "myapp"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

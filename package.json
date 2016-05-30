@@ -1,0 +1,24 @@
+{
+  "name": "myapp",
+  "version": "1.0.0",
+  "description": "My webapp scaffold front-end, support NodeJS + Express + AngularJS",
+  "main": "index.js",
+  "dependencies": {},
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GustavoGottardi/myapp.git"
+  },
+  "keywords": [
+    "myapp"
+  ],
+  "author": "Gustavo Gottardi",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/GustavoGottardi/myapp/issues"
+  },
+  "homepage": "https://github.com/GustavoGottardi/myapp#readme"
+}
