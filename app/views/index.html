@@ -1,16 +1,16 @@
 <!DOCTYPE html>
-<html ng-app="lighthouse" ng-controller="globalController">
+<html ng-app="myApp">
 	<head>
 		<meta charset="utf-8">
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 		<meta http-equiv="ClearType" content="true">
 		<title ng-bind="title"></title>
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<meta name="robots" content="ALL" />
 		<link rel="dns-prefetch" href="//www.google-analytics.com">
-	    <link rel="shortcut icon" href="../assets/images/favicon.png">
-		<link rel="stylesheet" href="../assets/css/main.min.css">
+	    <link rel="shortcut icon" href="assets/images/favicon.png">
+		<link rel="stylesheet" href="assets/css/main.min.css">
 	</head>
 	<body>
 
@@ -21,15 +21,64 @@
 	<!-- #HEADER -->
 	
 	<!-- CONTENT -->
-	<section class="row root">
-		<div ui-view class="content"></div>
+	<section class="row root" ng-controller="mainController">
+		<div ui-view class="content">
+			
+			<div id="lista-contatos">
+	            <table class="table table-striped">
+	 
+	                <tr>
+	                    <th>Nome</th>
+	                    <th>E-mail</th>
+	                    <th>Telefone</th>
+	                    <th>Opções</th>
+	                </tr>
+	 
+	                <!-- LOOP PARA CARREGAR TODOS OS CONTATOS EM $scope.contatos -->
+	                <tr ng-repeat="contato in contatos">
+	                    <td>{{ contato.nome }}</td>
+	                    <td>{{ contato.email }}</td>
+	                    <td>{{ contato.telefone }}</td>
+	                    <td>
+	                        <button type="button" class="btn btn-default" ng-click="editarContato(contato._id)">Editar</button>
+	                        <button type="button" class="btn btn-primary" ng-click="deletarContato(contato._id)">Remover</button>
+	                    </td>
+	                </tr>
+	 
+	            </table>
+	        </div>
+ 
+	        <!-- FORMULÁRIO PARA CRIARMOS UM NOVO CONTATO -->
+	        <div id="contato-form">
+	            <hr>
+	            <form>
+	                <div class="form-group col-md-3">
+	                    <label for="nomeContato">Nome</label>
+	                    <input type="text" class="form-control" id="nomeContato" placeholder="Nome Sobrenome" ng-model="formContato.nome">
+	                </div>
+	                <div class="form-group col-md-3">
+	                    <label for="emailContato">E-mail</label>
+	                    <input type="text" class="form-control" id="emailContato" placeholder="exemplo@exemplo.com" ng-model="formContato.email">
+	                </div>
+	                <div class="form-group col-md-3">
+	                    <label for="telefoneContato">Telefone</label>
+	                    <input type="text" class="form-control" id="telefoneContato" placeholder="(00) 0000-0000" ng-model="formContato.telefone">
+	                </div>
+	                <div class="form-group col-md-3">
+	                    <!-- createToDo() WILL CREATE NEW TODOS -->
+	                    <button type="submit" class="btn btn-primary" ng-click="criarContato()">Criar</button>
+	                    <button type="submit" class="btn btn-info" ng-click="atualizarContato()">Atualizar</button>
+	                </div>
+	            </form>
+	        </div>
+    	</div>
 	</section>
 	<!-- #CONTENT -->
 
 	<!-- FOOTER -->
 	<footer>
-		<script src="../assets/js/libs.min.js"></script>
-		<script src="../assets/js/main.min.js"></script>
+		<script src="assets/js/libs.min.js"></script>
+		<script src="assets/js/main.min.js"></script>
 	</footer>
 	<!-- #FOOTER -->
 	</body>
