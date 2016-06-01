@@ -22,7 +22,10 @@ module.exports = function(grunt) {
       },
       build: {
         files: {
-          './dist/assets/scripts/libs.min.js': ['./bower_components/angular/angular.min.js'],
+          './dist/assets/scripts/libs.min.js': [
+            './bower_components/angular/angular.js',
+            './bower_components/angular-ui-router/release/angular-ui-router.js'
+          ],
           './dist/assets/scripts/main.min.js': ['./app/assets/scripts/**/*.js']
         }
       }

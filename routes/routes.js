@@ -10,8 +10,9 @@ router.get('/api/contatos', function(req, res) {
     // utilizaremos o mongoose para buscar todos os contatos no BD
     Contato.find(function(err, contatos) {
         // Em caso de erros, envia o erro na resposta
-        if (err)
+        if (err){
             res.send(err)
+        }
         // Retorna todos os contatos encontrados no BD
         res.json(contatos); 
     });
@@ -26,12 +27,14 @@ router.post('/api/contatos', function(req, res) {
         telefone : req.body.telefone,
         done : false
     }, function(err, contato) {
-        if (err)
+        if (err){
             res.send(err);
+        }
         // Busca novamente todos os contatos após termos inserido um novo registro
         Contato.find(function(err, contatos) {
-            if (err)
+            if (err){
                 res.send(err)
+            }
             res.json(contatos);
         });
     });
@@ -44,12 +47,14 @@ router.delete('/api/contatos/:contato_id', function(req, res) {
     Contato.remove({
         _id : req.params.contato_id
     }, function(err, contato) {
-        if (err)
+        if (err){
             res.send(err);
+        }
         // Busca novamente todos os contatos após termos removido o registro
         Contato.find(function(err, contatos) {
-            if (err)
+            if (err){
                 res.send(err)
+            }
             res.json(contatos);
         });
     });
@@ -61,8 +66,9 @@ router.get('/api/contatos/:contato_id', function(req, res) {
     Contato.findOne({
         _id : req.params.contato_id
     }, function(err, contato) {
-        if (err)
+        if (err){
             res.send(err);
+        }
         res.json(contato);
     });
 });
@@ -73,13 +79,15 @@ router.put('/api/contatos/:contato_id', function(req, res) {
     var contatoData = req.body;
     var id = req.params.contato_id;
  
-    Contato.update( 
-        {_id: id }, 
-        contatoData, 
-        { upsert: true}, 
-        function(err, contato) {
-            if (err) res.send(err);
-            res.json(contato);
+    Contato.update({
+        _id: id 
+    }, contatoData, { 
+        upsert: true
+    }, function(err, contato) {
+        if (err){
+            res.send(err);
+        }
+        res.json(contato);
     });
     
 });

@@ -1,4 +1,4 @@
-myApp.controller('mainController', function($scope, $http) {    
+angular.module('myApp').controller('mainController', ['$scope','$http', function($scope, $http) {    
  
     // Quando acessar a página, carrega todos os contatos e envia para a view($scope)
     var refresh = function (){
@@ -60,4 +60,4 @@ myApp.controller('mainController', function($scope, $http) {
         });
     };
  
-});
+}]);
