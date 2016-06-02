@@ -1,6 +1,10 @@
-# myapp
-My webapp scaffold front-end, support NodeJS + Express + AngularJS
+# MyApp
+My simple WebApp scaffold front-end with NodeJS + Express + MongoDB + AngularJS
 
+# Usage
+Clone this repository and copy all files to yours folder of webapp 
+
+# Required
 Dependencies required to usage:
 - NodeJS
 - Npm
