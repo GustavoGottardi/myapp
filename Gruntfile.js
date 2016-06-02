@@ -49,7 +49,7 @@ module.exports = function(grunt) {
     cssmin: {
       build: {
         files: {
-          './dist/assets/css/app.min.css': ['./app/assets/css/app.css']
+          './dist/assets/css/main.min.css': ['./app/assets/css/main.css']
         }
       }
     },
@@ -74,8 +74,11 @@ module.exports = function(grunt) {
           removeComments: true,
           collapseWhitespace: true
         },
-        files: {                                       // Dictionary of files
-          './dist/views/index.html': './app/views/index.html', // 'destination': 'source'
+        files: {                                       // Dictionary of files - 'destination': 'source'
+          './dist/views/index.html': './app/views/index.html', 
+          './dist/views/login.html': './app/views/login.html', 
+          './dist/views/dashboard.html': './app/views/dashboard.html', 
+          './dist/views/contatos.html': './app/views/contatos.html', 
         }
       }
     },

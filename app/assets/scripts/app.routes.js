@@ -1,4 +1,6 @@
-myApp.config(['$stateProvider', function($stateProvider, $urlRouterProvider, $authProvider) {
+myApp.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', function($stateProvider, $urlRouterProvider, $locationProvider) {
+
+	$urlRouterProvider.otherwise('/');
 
 	$stateProvider
 	.state('login', {
@@ -7,10 +9,11 @@ myApp.config(['$stateProvider', function($stateProvider, $urlRouterProvider, $au
 		controller: 'mainController',
 		data: {
           pageTitle: 'MyApp - Login'
-        },
+        }
+        /*,
 		resolve: {
           skipIfLoggedIn: skipIfLoggedIn
-        }
+        }*/
 	})
 	.state('dashboard', {
 		url: '/dashboard',
@@ -18,21 +21,23 @@ myApp.config(['$stateProvider', function($stateProvider, $urlRouterProvider, $au
 		controller: 'dashboardController',
 		data: {
           pageTitle: 'MyApp - New Dashboard'
-        },
+        }/*,
 		resolve: {
           loginRequired: loginRequired
-        }
+        }*/
 	}).state('contatos', {
 		url: '/contatos',
-		templateUrl: '/views/pages/contatos.html',
+		templateUrl: '/views/contatos.html',
 		controller: 'mainController',
 		data: {
           pageTitle: 'MyApp - Contatos'
-        },
+        }/*,
 		resolve: {
           loginRequired: loginRequired
-        }
+        }*/
 	});
+
+	$locationProvider.html5Mode(true);
 
 	function loginRequired($q, $location, $auth) {
 		var deferred = $q.defer();

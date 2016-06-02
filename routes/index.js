@@ -4,6 +4,7 @@ var express = require('express');
 var mongoose = require('mongoose');
 var router = express.Router();
 var Contato = mongoose.model('Contato');
+var app = express();
  
 // ROTA BUSCAR ============================================
 router.get('/api/contatos', function(req, res) {
@@ -91,12 +92,6 @@ router.put('/api/contatos/:contato_id', function(req, res) {
     });
     
 });
- 
-// DEFININDO NOSSA ROTA PARA O ANGULARJS/FRONT-END =========
-router.get('*', function(req, res) {
-    // Carrega nossa view index.html que será a única da nossa aplicação
-    // O Angular irá lidar com as mudanças de páginas no front-end
-    res.sendfile('./dist/views/index.html');
-});
- 
+
+
 module.exports = router;

@@ -5,7 +5,7 @@ var mongoose = require('mongoose');
 var ContatoSchema = new mongoose.Schema({
   nome: String,
   email: String,
-  telefone: {type: Number, default: 0},
+  telefone: String,
 });
  
 //Define o model Contato
