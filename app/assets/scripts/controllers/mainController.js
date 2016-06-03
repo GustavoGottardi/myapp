@@ -1,31 +1,30 @@
-angular.module('myApp').controller('mainController', ['$scope','$http', function($scope, $http) {    
- 
+myApp.controller('mainController', ['$rootScope','$scope','$http', function($rootScope, $scope, $http, requestFactory) {  
+     
     // Quando acessar a página, carrega todos os contatos e envia para a view($scope)
-    var refresh = function (){
-        $http.get('/api/contatos')
-            .success(function(data) {
+    (function refresh(){
+        (function getRequestAjax() {
+            requestFactory.getRequestAjax('GET','/api/contatos','','refresh');
+            $rootScope.$on('refresh', function (event, data, status) {
+                console.log("Contatos: ", data);
                 $scope.contatos = data;
                 $scope.formContato = {};
-                console.log("contatos: ", data);
-            })
-            .error(function(data) {
-                console.log('Error: ' + data);
+
             });
-    };
-    refresh();
+        })();
+    })();
  
     // Quando clicar no botão Criar, envia informações para a API Node
     $scope.criarContato = function() {
-        $http.post('/api/contatos', $scope.formContato)
-            .success(function(data) {
+        (function getRequestAjax() {
+            requestFactory.getRequestAjax('POST','/api/contatos',$scope.formContato,'createContacts');
+            $rootScope.$on('createContacts', function (event, data, status) {
                 // Limpa o formulário para criação de outros contatos
                 $scope.formContato = {};
                 $scope.contatos = data;
                 console.log(data);
-            })
-            .error(function(data) {
-                console.log('Error: ' + data);
+
             });
+        })();
     };
  
     // Ao clicar no botão Remover, deleta o contato
