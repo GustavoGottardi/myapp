@@ -1,3 +1,3 @@
-var myApp = angular.module('myApp', ['ui.router','requestFactory']).config(function(){
+var myApp = angular.module('myApp', ['ui.router']).config(function(){
 
 });
