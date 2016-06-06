@@ -1,3 +1,1 @@
-var myApp = angular.module('myApp', ['ui.router']).config(function(){
-
-});
+var myApp = angular.module('myApp', ['ui.router']);
