@@ -10,36 +10,8 @@ var bodyParser = require('body-parser');
 // simular DELETE e PUT (express4)
 var methodOverride = require('method-override');
 
-
-
-// conectando ao mongodb no localhost, criando o banco de dados contato
-mongoose.connect('mongodb://localhost/contato');
-var db = mongoose.connection;
-// Caso haja erro ao se conectar emite um log
-db.on('error', console.error);
-db.once('open', startServer);
-function startServer(){
-	// Define a porta 8080 onde será executada nossa aplicação
-	var server = app.listen(8080, function(){
-		var port = server.address().port;
-		// Imprime uma mensagem no console
-		console.log("Aplicação executada na porta: "+port);
-
-		// DEFININDO NOSSA ROTA PARA O ANGULARJS/FRONT-END =========
-		app.get('*', function(req, res) {
-		    // Carrega nossa view index.html que será a única da nossa aplicação
-		    // O Angular irá lidar com as mudanças de páginas no front-end
-		    res.sendfile(__dirname + '/dist/views/index.html');
-		});
-	});
-};
-
-// start up the server
-
 // Requisição ao arquivo que cria nosso model Contato
 require('./models/Contato');
-
-
 
 // definindo local de arquivos públicos
 app.use(express.static(__dirname + '/dist'));
@@ -57,7 +29,28 @@ app.use(bodyParser.json());
 app.use(bodyParser.json({ type: 'application/vnd.api+json' }));
 app.use(methodOverride());
 
+// start up the server
+// conectando ao mongodb no localhost, criando o banco de dados contato
+mongoose.connect('mongodb://localhost/contato');
+var db = mongoose.connection;
+// Caso haja erro ao se conectar emite um log
+db.on('error', console.error);
+db.once('open', startServer);
+function startServer(){
+	// Define a porta 8080 onde será executada nossa aplicação
+	var server = app.listen(8080, function(){
+		var port = server.address().port;
+		// Imprime uma mensagem no console na porta em que a aplicação está rodando
+		console.log("Aplicação executada na porta: "+port);
 
+		// Definindo nossa rota principal para o ANGULARJS/FRONT-END
+		app.get('*', function(req, res) {
+		    // Carrega nossa view index.html que será a única da nossa aplicação
+		    // O Angular irá lidar com as mudanças de páginas no front-end
+		    res.sendfile(__dirname + '/dist/views/index.html');
+		});
+	});
+};
 
 // Incluindo nossas rotas definidas no arquivo routes/index.js
 var index = require('./routes/index');
